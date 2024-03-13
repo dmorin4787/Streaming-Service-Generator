@@ -13,10 +13,14 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 const userName = process.env.MONGO_DB_USERNAME;
 const password = process.env.MONGO_DB_PASSWORD;
+const mongoDBName = process.env.MONGO_DB_NAME;
+const mongoDBCollection = process.env.MONGO_COLLECTION;
+const apiKey = process.env.API_KEY;
+const apiHost = process.env.API_HOST;
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const databaseAndCollection = {db: "CMSC335_Final_DB", collection: "likedMovies"};
-const uri = `mongodb+srv://dmorin1:cestLaVie@cluster0.lclenen.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const databaseAndCollection = {db: mongoDBName, collection: mongoDBCollection};
+const uri = `mongodb+srv://${userName}:${password}@cluster0.lclenen.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 let currentMovie = "";
@@ -41,8 +45,8 @@ app.post('/', async (req, res) => {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': process.env.API_KEY,
-      'X-RapidAPI-Host': process.env.API_HOST
+      'X-RapidAPI-Key': apiKey,
+      'X-RapidAPI-Host': apiHost
     }
   };
 
