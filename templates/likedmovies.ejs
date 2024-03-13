@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+	<title>Streaming Service Generator</title>
+    <style>
+        .btns {
+            display: inline-block;  
+            border-radius: 4px;  
+            background-color:darkolivegreen;  
+            border: none;  
+            color: beige;  
+            text-align: center;  
+            font-size: 20px;  
+            padding: 15px;  
+            transition: all 0.5s;  
+            cursor: pointer;  
+            margin: 5px;
+        }
+        .btns span {
+            cursor: pointer;  
+            display: inline-block;  
+            position: relative;  
+            transition: 0.5s;
+        }
+        .btns span:after {
+            content: '\00bb';  /* CSS Entities. To use HTML Entities, use →*/
+            position: absolute;  opacity: 0;  top: 0;  right: -20px;  transition: 0.5s;}
+        .btns:hover span {  
+            padding-right: 25px;
+        }
+        .btns:hover span:after {  
+            opacity: 1;  
+            right: 0;
+        }
+    </style>
+</head>
+
+<body style="background-color: darkseagreen; font-family: sans-serif; color: navajowhite">
+    <div id="links" style="text-align: right;">
+        <h3 style="color: white"><strong><a href="/">Home</a> | <a href="/likedmovies">Liked Movies</a></strong></h3>
+    </div>
+    <hr>
+
+    <h1 style="padding: 1rem;"><u>Liked Movies:</u></h1>
+    <%- movieTable %>
+
+    <form action=<%- url %> method="post">
+        <input  class="btns" type="submit" id="search" name="clear" value="Clear Liked Movies">
+        <br>
+        <br>
+    </form>
+</body>
+
+</html> 
